@@ -9,11 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: mr-smithers-excellent/docker-build-push@v2
+      - uses: actions/checkout@v2
+      - name: Publish to Registry
+        uses: docker/build-push-action@v1
         with:
-          image: tommilehtisaari/digiroad-privateroad-backend
-          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: tommilehtisaari/digiroad-privateroad-backend
+          tag_with_sha: true
