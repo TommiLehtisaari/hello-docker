@@ -6,7 +6,7 @@ EXPOSE 6000
 
 COPY package.json .
 
-RUN yarn install --production
+RUN yarn install --production && yarn cache clean
 
 COPY server.js server.js
 
